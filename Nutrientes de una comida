@@ -16,7 +16,7 @@ public class Main {
                 double valorNutricional = calorias + grasa + proteina + carbohidratos;
 
                 
-                boolean esAceptable = valorNutricional <= 1000; // Puedes ajustar este límite según tus necesidades
+                boolean esAceptable = valorNutricional <= 1000;
 
                 
                 System.out.println("\nValor Nutricional:");
@@ -33,7 +33,7 @@ public class Main {
                 }
             }
 
-            // Método auxiliar para solicitar la cantidad de un ingrediente al usuario
+            
             public static double pedirCantidad(String nombreIngrediente) {
                 Scanner scanner = new Scanner(System.in);
                 System.out.print("Cantidad de " + nombreIngrediente + " (en gramos): ");
