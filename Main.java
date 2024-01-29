@@ -1,42 +1,66 @@
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
 
                 Scanner scanner = new Scanner(System.in);
+                int tamano = 2;
 
                 
-                System.out.println("Ingrese la cantidad en gramos de cada ingrediente y su grupo nutricional:");
-                double calorias = pedirCantidad("Calorías");
-                double grasa = pedirCantidad("Grasa");
-                double proteina = pedirCantidad("Proteína");
-                double carbohidratos = pedirCantidad("Carbohidratos");
-
-               
-                double valorNutricional = calorias + grasa + proteina + carbohidratos;
+                String[] titulos = new String[tamano];
+                int[] anosLanzamiento = new int[tamano];
+                String[] generos = new String[tamano];
 
                 
-                boolean esAceptable = valorNutricional <= 1000; // Puedes ajustar este límite según tus necesidades
+                System.out.println("Ingrese información de películas:");
+                for (int a = 0; a < tamano; a++) {
+
+                    System.out.print("Título de la película " + (a + 1) + ": ");
+                    titulos[a] = scanner.nextLine();
+
+                    System.out.print("Año de lanzamiento: ");
+                    anosLanzamiento[a] = Integer.parseInt(scanner.nextLine());
+
+                    System.out.print("Género: ");
+                    generos[a] = scanner.nextLine();
+                }
 
                 
-                System.out.println("\nValor Nutricional:");
-                System.out.println("Calorías: " + calorias + "g");
-                System.out.println("Grasa: " + grasa + "g");
-                System.out.println("Proteína: " + proteina + "g");
-                System.out.println("Carbohidratos: " + carbohidratos + "g");
-                System.out.println("Valor Nutricional Total: " + valorNutricional + "g");
+                for (int i = 0; i < tamano - 1; i++) {
 
-                if (esAceptable) {
-                    System.out.println("El valor nutricional de la comida es ACEPTABLE.");
-                } else {
-                    System.out.println("El valor nutricional de la comida NO es ACEPTABLE.");
+                    for (int j = 0; j < tamano - 1 - i; j++) {
+                        if (anosLanzamiento[j] > anosLanzamiento[j + 1] ||
+                                (anosLanzamiento[j] == anosLanzamiento[j + 1] && generos[j].compareTo(generos[j + 1]) > 0)) {
+
+                            // METODO AUXILIAR
+                            swap(titulos, j, j + 1);
+                            swap(anosLanzamiento, j, j + 1);
+                            swap(generos, j, j + 1);
+                        }
+                    }
+                }
+
+                
+                System.out.println("\nLista de películas ordenada:");
+                for (int i = 0; i < tamano; i++) {
+                    System.out.println("Título: " + titulos[i] + ", Año: " + anosLanzamiento[i] + ", Género: " + generos[i]);
                 }
             }
 
-            // Método auxiliar para solicitar la cantidad de un ingrediente al usuario
-            public static double pedirCantidad(String nombreIngrediente) {
-                Scanner scanner = new Scanner(System.in);
-                System.out.print("Cantidad de " + nombreIngrediente + " (en gramos): ");
-                return Double.parseDouble(scanner.nextLine());
+            
+            public static void swap(String[] arr, int i, int j) {
+                String temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+
+            public static void swap(int[] arr, int i, int j) {
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
             }
         }
+
+
+
+
+
