@@ -1,0 +1,42 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+
+                Scanner scanner = new Scanner(System.in);
+
+                
+                System.out.println("Ingrese la cantidad en gramos de cada ingrediente y su grupo nutricional:");
+                double calorias = pedirCantidad("Calorías");
+                double grasa = pedirCantidad("Grasa");
+                double proteina = pedirCantidad("Proteína");
+                double carbohidratos = pedirCantidad("Carbohidratos");
+
+               
+                double valorNutricional = calorias + grasa + proteina + carbohidratos;
+
+                
+                boolean esAceptable = valorNutricional <= 1000; // Puedes ajustar este límite según tus necesidades
+
+                
+                System.out.println("\nValor Nutricional:");
+                System.out.println("Calorías: " + calorias + "g");
+                System.out.println("Grasa: " + grasa + "g");
+                System.out.println("Proteína: " + proteina + "g");
+                System.out.println("Carbohidratos: " + carbohidratos + "g");
+                System.out.println("Valor Nutricional Total: " + valorNutricional + "g");
+
+                if (esAceptable) {
+                    System.out.println("El valor nutricional de la comida es ACEPTABLE.");
+                } else {
+                    System.out.println("El valor nutricional de la comida NO es ACEPTABLE.");
+                }
+            }
+
+            // Método auxiliar para solicitar la cantidad de un ingrediente al usuario
+            public static double pedirCantidad(String nombreIngrediente) {
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Cantidad de " + nombreIngrediente + " (en gramos): ");
+                return Double.parseDouble(scanner.nextLine());
+            }
+        }
